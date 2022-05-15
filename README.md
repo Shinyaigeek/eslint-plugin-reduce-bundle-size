@@ -75,7 +75,7 @@ class Hoge {
 
 for more examples, plz see the test.
 
-I recommend that `ban-underscore-prefix-on-public-field` and `enforce-underscore-prefix-on-private-field` are used together, and mangled with the above mangling rule.
+I strongly recommend that `ban-underscore-prefix-on-public-field` and `enforce-underscore-prefix-on-private-field` are used together, and mangled with the above mangling rule. 
 
 ```
 mangle: {
@@ -84,3 +84,37 @@ mangle: {
     }
 },
 ```
+
+Further optimization is possible by using the ban-computed-property-access rule (described below) to prohibit computed property access, and by making all object properties subject to minify.
+
+### ban-computed-property-access
+
+This rule bans computed property access. A computed property access can break minified property.
+
+```javascript
+
+// mangler can not minify such a fuga property as a default behavior
+
+hoge.fuga = "fuga";
+console.log(hoge.fuga);
+
+// into
+
+a.fuga = "fuga";
+console.log(a.fuga);
+
+// because such a output code will break with property minifying.
+
+const hogeProp = getRandomlyHogeProperty() // return fuga or bar;
+hoge.fuga = "fuga";
+hoge.bar = "bar";
+console.log(hoge[hogeProp]);
+```
+
+#### examples
+
+```javascript
+hoge[fuga] // throw warnings
+hoge.fuga // not throw warnings
+```
+
