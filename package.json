@@ -30,10 +30,13 @@
     "eslint-plugin",
     "bundle-size"
   ],
-  "author": "",
+  "author": "Shinobu Hayashi <PhilisPaxil@gmail.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Shinyaigeek/eslint-plugin-reduce-bundle-size/issues"
+  },
+  "publishConfig": {
+    "registry":"https://npm.pkg.github.com"
   },
   "homepage": "https://github.com/Shinyaigeek/eslint-plugin-reduce-bundle-size#readme"
 }
