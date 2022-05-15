@@ -74,3 +74,13 @@ class Hoge {
 ```
 
 for more examples, plz see the test.
+
+I recommend that `ban-underscore-prefix-on-public-field` and `enforce-underscore-prefix-on-private-field` are used together, and mangled with the above mangling rule.
+
+```
+mangle: {
+    properties: {
+        regex: /^_/,
+    }
+},
+```
